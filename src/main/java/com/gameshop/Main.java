@@ -12,7 +12,7 @@ public class Main {
         System.out.println("--- 1. TEST DE INVENTARIO ---");
         String[] juegos = {"Cyberpunk", "Zelda", "Mario Kart", "Halo"};
         int[] stock = {10, 2, 15, 4};
-        inventario.p(juegos, stock);
+        inventario.gestionarInventario(juegos, stock);
 
         // --- PRUEBA ALUMNO 2: VENTAS ---
         System.out.println("\n--- 2. TEST DE VENTAS ---");
