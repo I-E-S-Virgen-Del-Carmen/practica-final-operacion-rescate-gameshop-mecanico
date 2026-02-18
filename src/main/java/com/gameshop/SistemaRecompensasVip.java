@@ -2,6 +2,9 @@ package com.gameshop;
 
 public class SistemaRecompensasVip {
 
+    private static final int oro = 100;
+    private static final int leyenda = 500;
+
     public boolean comprobarVip(String tipoCliente) {
         // BUG (NPE): Si 'tipoCliente' es null (como pasa en el Main), intentar hacer .equals() lanza un NullPointerException.
         // SOLUCIÓN SONARLINT: Escribir "Premium".equals(tipoCliente)
@@ -13,24 +16,32 @@ public class SistemaRecompensasVip {
     }
 
     public String generarReporte(int puntos) {
-        String r = "";
+        StringBuilder reporte = new StringBuilder();
 
         // CODE SMELL CRÍTICO: Concatenación de Strings en un bucle con '+' (usar StringBuilder)
-        for (int i = 0; i < puntos; i++) {
-            r = r + "*";
-        }
+        generarAstericos(puntos, reporte);
 
         // CODE SMELL: Complejidad Cognitiva alta (Escalera de Ifs)
+        agregarTituloCliente(puntos, reporte);
+
+        return reporte.toString();
+    }
+
+    private void agregarTituloCliente(int puntos, StringBuilder reporte) {
         if (puntos > 0) {
-            if (puntos >= 100) {
-                if (puntos >= 500) {
-                    r = r + " ¡CLIENTE LEYENDA!";
+            if (puntos >= oro) {
+                if (puntos >= leyenda) {
+                    reporte.append(" ¡CLIENTE LEYENDA!");
                 } else {
-                    r = r + " ¡CLIENTE ORO!";
+                    reporte.append(" ¡CLIENTE ORO!");
                 }
             }
         }
+    }
 
-        return r;
+    private void generarAstericos(int puntos, StringBuilder reporte) {
+        for (int i = 0; i < puntos; i++) {
+            reporte.append("*");
+        }
     }
 }
