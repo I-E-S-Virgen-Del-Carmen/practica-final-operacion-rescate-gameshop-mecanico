@@ -12,7 +12,6 @@ public class Main {
         System.out.println("--- 1. TEST DE INVENTARIO ---");
         String[] juegos = {"Cyberpunk", "Zelda", "Mario Kart", "Halo"};
         int[] stock = {10, 2, 15, 4};
-        // BUG: El programa nunca avisará del stock bajo de 'Halo' ni lo sumará al total.
         inventario.p(juegos, stock);
 
         // --- PRUEBA ALUMNO 2: VENTAS ---
