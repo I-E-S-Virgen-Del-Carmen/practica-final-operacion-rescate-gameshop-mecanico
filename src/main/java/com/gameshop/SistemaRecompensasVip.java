@@ -2,17 +2,14 @@ package com.gameshop;
 
 public class SistemaRecompensasVip {
 
-    private static final int oro = 100;
-    private static final int leyenda = 500;
+    private static final int ORO = 100;
+    private static final int LEYENDA = 500;
 
     public boolean comprobarVip(String tipoCliente) {
         // BUG (NPE): Si 'tipoCliente' es null (como pasa en el Main), intentar hacer .equals() lanza un NullPointerException.
         // SOLUCIÓN SONARLINT: Escribir "Premium".equals(tipoCliente)
-        if ("Premium".equals(tipoCliente)) {
-            return true;
-        } else {
-            return false;
-        }
+        return "Premium".equals(tipoCliente);
+
     }
 
     public String generarReporte(int puntos) {
@@ -28,13 +25,11 @@ public class SistemaRecompensasVip {
     }
 
     private void agregarTituloCliente(int puntos, StringBuilder reporte) {
-        if (puntos > 0) {
-            if (puntos >= oro) {
-                if (puntos >= leyenda) {
-                    reporte.append(" ¡CLIENTE LEYENDA!");
-                } else {
-                    reporte.append(" ¡CLIENTE ORO!");
-                }
+        if (puntos > 0 && puntos < ORO) {
+            if (puntos >= LEYENDA) {
+                reporte.append(" ¡CLIENTE LEYENDA!");
+            } else {
+                reporte.append(" ¡CLIENTE ORO!");
             }
         }
     }
