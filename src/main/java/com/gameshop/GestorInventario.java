@@ -7,7 +7,6 @@ public class GestorInventario {
     public void p(String[] n, int[] c) {
         int t = 0;
 
-
         for (int i = 0; i < n.length; i++) {
             System.out.println("Revisando stock de: " + n[i]);
 
