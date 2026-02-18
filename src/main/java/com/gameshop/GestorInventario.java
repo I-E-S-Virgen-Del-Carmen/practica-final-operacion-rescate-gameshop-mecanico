@@ -2,20 +2,33 @@ package com.gameshop;
 
 public class GestorInventario {
 
-    public void p(String[] n, int[] c) {
-        int t = 0;
+    public static final int STOCK_MINIMO = 5;
 
-        // BUG LÓGICO: El '- 1' hace que el último elemento (Halo) se ignore por completo.
-        for (int i = 0; i < n.length - 1; i++) {
-            System.out.println("Revisando stock de: " + n[i]);
+    public void gestionarInventario(String[] nombreJuego, int[] cantidad) {
+        int Total = 0;
 
-            // CODE SMELL: Magic Number (5)
-            if (c[i] <= 5) {
-                System.out.println("¡ALERTA! Pedir más copias de " + n[i]);
-            }
+        for (int i = 0; i < nombreJuego.length; i++) {
+            comprobarNombre("Revisando stock de: " + nombreJuego[i]);
 
-            t = t + c[i];
+            comprobarStock(nombreJuego, cantidad, i);
+
+            Total = getTotal(Total, cantidad[i]);
         }
-        System.out.println("Total de juegos en el almacén: " + t);
+        comprobarNombre("Total de juegos en el almacén: " + Total);
+    }
+
+    private static int getTotal(int Total, int cantidad) {
+        Total = Total + cantidad;
+        return Total;
+    }
+
+    private static void comprobarNombre(String nombreJuego) {
+        System.out.println(nombreJuego);
+    }
+
+    private static void comprobarStock(String[] nombreJuego, int[] cantidad, int i) {
+        if (cantidad[i] <= STOCK_MINIMO) {
+            comprobarNombre("¡ALERTA! Pedir más copias de " + nombreJuego[i]);
+        }
     }
 }
